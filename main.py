@@ -74,8 +74,12 @@ def foo(out_file1="audio1.mp3", out_file2="audio2.mp3"):
   return r
 
 
-@app.route("api/audiotolyrics/<path:url>")
-def download(url, out_file="audio.mp3"):
+@app.route("api/audiotolyrics/", methods=['GET'])
+def download(out_file="audio.mp3"):
+  bar = request.args.to_dict()
+  print(bar)
+  url = bar.get("a")
+  
   big = []
   text = ""
   #out_file = Path(f"/content/{out_file}").expanduser()
