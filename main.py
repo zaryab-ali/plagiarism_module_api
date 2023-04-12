@@ -75,16 +75,16 @@ def foo(out_file1="audio1.mp3", out_file2="audio2.mp3"):
 
 
 @app.route("api/audiotolyrics/", methods=['GET'])
-def download(out_file="audio.mp3"):
+def lyrics(out_file="audio.mp3"):
   bar = request.args.to_dict()
   print(bar)
-  url = bar.get("a")
+  url3 = bar.get("a")
   
   big = []
   text = ""
   #out_file = Path(f"/content/{out_file}").expanduser()
 
-  resp = requests.get(url)
+  resp = requests.get(url3)
   resp.raise_for_status()
   with open("audio.mp3", "wb") as fout:
     fout.write(resp.content)
