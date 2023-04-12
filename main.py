@@ -18,7 +18,7 @@ def shit():
 
 
 @app.route("/bullshit")
-def shit():
+def shit21():
     return f"yes u are shit"
 
 
@@ -68,4 +68,8 @@ def foo(out_file1="audio1.mp3", out_file2="audio2.mp3"):
   print(r)
   return r
 
+
+
+if __name__ == '__main__':
+  app.run(host="0.0.0.0",port=5000,debug=True)
 
