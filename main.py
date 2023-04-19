@@ -7,15 +7,11 @@ import numpy as np
 
 from cdifflib import CSequenceMatcher
 import requests
-from pathlib import Path
 import os
 from flask import Flask,request
 
-import speech_recognition as sr
-from pydub import AudioSegment
-from pydub.utils import make_chunks
-import ffmpeg
-import ffprobe
+
+
 
 
 
