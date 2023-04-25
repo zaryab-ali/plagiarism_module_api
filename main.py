@@ -164,13 +164,13 @@ def lyrics(out_file="audio.mp3"):
 
   resp = requests.get(url3)
   resp.raise_for_status()
-  with open("audio.mp3", "wb") as fout:
+  with open("audio.wav", "wb") as fout:
     fout.write(resp.content)
 
   r = sr.Recognizer()
 
   # open the file
-  with sr.AudioFile("audio.mp3") as source:
+  with sr.AudioFile("audio.wav") as source:
     # listen for the data (load audio to memory)
     audio_data = r.record(source)
     # recognize (convert from speech to text)
