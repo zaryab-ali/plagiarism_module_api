@@ -152,11 +152,6 @@ def find_genre():
 
 
 
-@app.route("/genre")
-def find_genre():
-  os.system('')
-
-
 # @app.route("/api/audiotolyrics/", methods=['GET'])
 # def lyrics(out_file="audio.mp3"):
 #   bar = request.args.to_dict()
