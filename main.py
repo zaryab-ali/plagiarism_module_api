@@ -4,6 +4,7 @@ import hashlib
 import json
 import pickle
 import numpy as np
+import speech_recognition as sr
 
 from cdifflib import CSequenceMatcher
 import requests
@@ -149,6 +150,45 @@ def find_genre():
   print(predicted_index[0])
 
   return predicted_index[0]
+
+
+
+@app.route("/api/audiotolyrics/", methods=['GET'])
+def lyrics(out_file="audio.mp3"):
+  bar = request.args.to_dict()
+  print(bar)
+  url3 = bar.get("a")
+
+  big = []
+  text = ""
+
+  resp = requests.get(url3)
+  resp.raise_for_status()
+  with open("audio.mp3", "wb") as fout:
+    fout.write(resp.content)
+
+  r = sr.Recognizer()
+
+  # open the file
+  with sr.AudioFile("audio.mp3") as source:
+    # listen for the data (load audio to memory)
+    audio_data = r.record(source)
+    # recognize (convert from speech to text)
+    try:
+      text = r.recognize_google(audio_data)
+      print(text)
+    except:
+      print("...")
+      text = "..."
+  x = text.split(" ",24)
+  os.remove("audio.mp3")
+  return x
+
+
+
+
+
+
 
 if __name__ == '__main__':
   app.run(host="0.0.0.0",port=5000,debug=True)
