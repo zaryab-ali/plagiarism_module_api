@@ -187,8 +187,13 @@ def find_genre():
 
 @app.route("/api/inst/")
 def inst():
+  os.system("sudo apt update")
+  os.system("sudo apt install snapd")
   os.system("sudo snap install ffmpeg")
   os.system('ffmpeg -version')
+
+  t = "it worked"
+  return t
 
 
 
