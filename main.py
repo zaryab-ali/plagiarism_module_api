@@ -5,6 +5,7 @@ import json
 import pickle
 import numpy as np
 import speech_recognition as sr
+import time
 
 from cdifflib import CSequenceMatcher
 import requests
@@ -80,6 +81,7 @@ def foo(out_file1="audio1.mp3", out_file2="audio2.mp3"):
 @app.route("/api/audiotolyrics/", methods=['GET'])
 def lyrics(out_file="audio.mp3"):
   os.system("sudo apt install ffmpeg")
+  time.sleep(20)
   bar = request.args.to_dict()
   print(bar)
   url3 = bar.get("a")
