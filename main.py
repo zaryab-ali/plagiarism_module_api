@@ -11,12 +11,8 @@ from cdifflib import CSequenceMatcher
 import requests
 import os
 from flask import Flask,request
-
-
-
-
-
-
+from pydub import AudioSegment
+from pydub.utils import make_chunks
 
 app = Flask(__name__)
 
@@ -156,6 +152,11 @@ def find_genre():
 
 
 
+@app.route("/genre")
+def find_genre():
+  os.system('')
+
+
 # @app.route("/api/audiotolyrics/", methods=['GET'])
 # def lyrics(out_file="audio.mp3"):
 #   bar = request.args.to_dict()
@@ -191,7 +192,8 @@ def find_genre():
 
 @app.route("/api/inst/")
 def inst():
-  os.system("sudo apt install ffmpeg")
+  os.system("sudo snap install ffmpeg")
+  os.system('ffmpeg -version')
 
 
 
