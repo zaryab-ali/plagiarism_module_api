@@ -266,7 +266,18 @@ def foo(out_file1="audio1.mp3", out_file2="audio2.mp3"):
 
 @app.route("/transcribe", methods=["POST"])
 def transcribe_audio():
+    """
+    Transcribe audio from a URL using AssemblyAI API.
 
+    Expects a JSON payload in the request body with the following format:
+    {
+        "api_token": "YOUR_API_TOKEN",
+        "audio_url": "URL_TO_AUDIO_FILE"
+    }
+
+    Returns:
+        dict: Completed transcript object.
+    """
     data = request.get_json()
     api_token = data["api_token"]
     audio_url = data["audio_url"]
@@ -277,25 +288,7 @@ def transcribe_audio():
     if upload_url:
         # Transcribe the audio file using the upload URL
         transcript = create_transcript(api_token, upload_url)
-        #dd = json.load(transcript)
-        print(transcript["id"])
-        print(transcript["text"])
-        print(transcript["words"][0]["text"])
-        big = []
-        wword = ""
-        sec = 5
-        for element in transcript["words"]:
-            if int(element["end"]/1000) < sec:
-                wword = wword + " " + element["text"]
-
-            else:
-                wword = wword + " " + element["text"]
-                big.append(wword)
-                wword = ""
-                sec = sec + 4
-
-        t1 = {"lyrics": big}
-        return json.dumps(t1)
+        return json.dumps(transcript)
     else:
         return "Error uploading file."
 
